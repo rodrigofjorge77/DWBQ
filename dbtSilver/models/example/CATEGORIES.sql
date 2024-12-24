@@ -11,9 +11,8 @@
 
 with source_data as (
 
-    select 1 as id
-    union all
-    select null as id
+    SELECT CATEGORY_ID, DESCRIPTION, CATEGORY_NAME
+    FROM dwbq-445617.dw_bronze.CATEGORIES
 
 )
 
