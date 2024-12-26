@@ -1,0 +1,18 @@
+--criar as pastas 
+mkdir -p ./dags ./logs ./plugins ./config
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+
+--variavel
+AIRFLOW_UID=50000
+
+--construir as imagens
+docker compose build
+
+--iniciar o banco de dados do airflow
+docker compose up airflow-init
+
+--inciar o ambiente
+docker compose up
+
+--limpar o docker
+docker compose down --volumes --rmi all
