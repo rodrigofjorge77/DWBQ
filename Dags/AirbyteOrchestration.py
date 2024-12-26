@@ -20,7 +20,7 @@ with DAG(dag_id='airbyte_example_airflow_dag',
         task_id='airbyte_trigger_sync',
         airbyte_conn_id='airbyte_conn',
         connection_id=AIRBYTE_CONNECTION_ID,
-        asynchronous=True
+        asynchronous=False
         )
 
         silver_Categories = BigQueryInsertJobOperator(
