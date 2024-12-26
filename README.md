@@ -9,55 +9,47 @@
 
 ## Overview
 
-Neste projeto:  
-✅ Desenvolvi toda a arquitetura do DW, integrando diferentes camadas para organizar e otimizar o fluxo de dados.  
-✅ Modelei o banco de dados no formato dimensional snowflake, utilizando como base o clássico Northwind Model Database da Microsoft.  
-✅ Construí pipelines ETL/ELT no Apache Airflow, orquestrando todo o processo em containers Docker.  
-✅ Carreguei e organizei os dados no banco Snowflake, explorando toda sua escalabilidade e performance.  
-✅ Finalizei com a criação de um dashboard interativo no Power BI, onde os insights ganham vida!  
 
 ## System Architecture
 
 ![System Architecture](https://github.com/rodrigofjorge77/DWBQ/blob/main/assets/architecture.png)
 
-## Data Source Model in Postgres
+## Data Source Model in Oracle
 
 ![System Architecture](https://github.com/rodrigofjorge77/DWSnowflake/blob/main/Assets/schema%20das%20tabelas%20na%20orgiem.png)
 
 ## Airflow Pipeline
 
-![System Architecture](https://github.com/rodrigofjorge77/DWBQ/blob/main/assets/architecture.png)
+![System Architecture](https://github.com/rodrigofjorge77/DWBQ/blob/main/assets/airflow_airbyte2.png)
 
-## Star Schema Snowflake Model
+## Looker
 
-![System Architecture](https://github.com/rodrigofjorge77/DWSnowflake/blob/main/Assets/DW%20Snowflake%20Model.png)
-
-## Power BI Dashboard
-
-![System Architecture](https://github.com/rodrigofjorge77/DWSnowflake/blob/main/Assets/DW%20Dashboard%20PowerBI.png)
+![System Architecture](https://github.com/rodrigofjorge77/DWBQ/blob/main/assets/looker.png)
 
 ## Technologies
 
 - Docker
-- Postgres
+- Oracle
 - Airflow
-- Snowflake
-- PowerBI
+- Airbyte
+- Big Query
+- Looker
 
 ## Getting Started
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/rodrigofjorge77/DWSnowflake.git
+    [git clone https://github.com/rodrigofjorge77/DWSnowflake.git](https://github.com/rodrigofjorge77/DWBQ.git)
     ```
 
-2. Install Airflow:  
+2. Install Airbyte:  
 
-    https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html
+    https://www.restack.io/docs/airbyte-knowledge-airbyte-docker-container-guide
+
+3. Install Airflow:  
+
+    https://airbyte.com/tutorials/how-to-use-airflow-and-airbyte-together
    
-3. Create an Account in Snowflake  
-    https://signup.snowflake.com/?utm_cta=trial-en-www-homepage-top-right-nav-ss-evg&_ga=2.18470073.1079222840.1734114122-480247440.1733135053
-
 ## License
 
 This project is licensed under the MIT License
