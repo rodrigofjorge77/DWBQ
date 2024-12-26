@@ -142,9 +142,83 @@ with DAG(dag_id='DW_Big_Query_Airbyte_Orchestration',
             gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
         )
 
+        gold_Customers = BigQueryInsertJobOperator(
+            task_id='gold_Customers',
+            configuration={
+                "query": {
+                    "query": "CALL `dwbq-445617`.dw_gold.dim_CUSTOMERS()",
+                    "useLegacySql": False,  # Define o uso de SQL padrão
+                }
+            },
+            location="us",  # Substitua pela região onde o BigQuery está configurado
+            gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
+        )        
+
+        gold_Employees = BigQueryInsertJobOperator(
+            task_id='gold_Employees',
+            configuration={
+                "query": {
+                    "query": "CALL `dwbq-445617`.dw_gold.dim_EMPLOYEES()",
+                    "useLegacySql": False,  # Define o uso de SQL padrão
+                }
+            },
+            location="us",  # Substitua pela região onde o BigQuery está configurado
+            gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
+        )  
+
+        gold_Orders = BigQueryInsertJobOperator(
+            task_id='gold_Orders',
+            configuration={
+                "query": {
+                    "query": "CALL `dwbq-445617`.dw_gold.dim_ORDERS()",
+                    "useLegacySql": False,  # Define o uso de SQL padrão
+                }
+            },
+            location="us",  # Substitua pela região onde o BigQuery está configurado
+            gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
+        ) 
+
+        gold_Products = BigQueryInsertJobOperator(
+            task_id='gold_Products',
+            configuration={
+                "query": {
+                    "query": "CALL `dwbq-445617`.dw_gold.dim_PRODUCTS()",
+                    "useLegacySql": False,  # Define o uso de SQL padrão
+                }
+            },
+            location="us",  # Substitua pela região onde o BigQuery está configurado
+            gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
+        ) 
+
+        gold_Tempo = BigQueryInsertJobOperator(
+            task_id='gold_Tempo',
+            configuration={
+                "query": {
+                    "query": "CALL `dwbq-445617`.dw_gold.dim_Tempo('2024-01-01', '2024-12-31')",
+                    "useLegacySql": False,  # Define o uso de SQL padrão
+                }
+            },
+            location="us",  # Substitua pela região onde o BigQuery está configurado
+            gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
+        )        
+
+        gold_Fato_Orders = BigQueryInsertJobOperator(
+            task_id='gold_Fato_Orders',
+            configuration={
+                "query": {
+                    "query": "CALL `dwbq-445617`.dw_gold.fato_ORDERS()",
+                    "useLegacySql": False,  # Define o uso de SQL padrão
+                }
+            },
+            location="us",  # Substitua pela região onde o BigQuery está configurado
+            gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
+        ) 
+
 wait1 = DummyOperator(task_id='wait1', trigger_rule='all_success')
 wait2 = DummyOperator(task_id='wait2', trigger_rule='all_success')
+wait3 = DummyOperator(task_id='wait2', trigger_rule='all_success')
+wait4 = DummyOperator(task_id='wait2', trigger_rule='all_success')
 
-trigger_airbyte_sync >> wait1 >> [silver_Categories,silver_Customers,silver_EmployeesTerritories,silver_Employees,silver_Products] >> wait2 >> [silver_Region,silver_Shippers,silver_Territories,silver_Orders,silver_OrdersDetails]
+trigger_airbyte_sync >> wait1 >> [silver_Categories,silver_Customers,silver_EmployeesTerritories,silver_Employees,silver_Products] >> wait2 >> [silver_Region,silver_Shippers,silver_Territories,silver_Orders,silver_OrdersDetails] >> wait3 >> [gold_Customers,gold_Employees,gold_Orders,gold_Products,gold_Tempo] >> wait4 >> gold_Fato_Orders
 
     
