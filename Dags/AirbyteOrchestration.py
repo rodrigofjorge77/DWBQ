@@ -216,8 +216,8 @@ with DAG(dag_id='DW_Big_Query_Airbyte_Orchestration',
 
 wait1 = DummyOperator(task_id='wait1', trigger_rule='all_success')
 wait2 = DummyOperator(task_id='wait2', trigger_rule='all_success')
-wait3 = DummyOperator(task_id='wait2', trigger_rule='all_success')
-wait4 = DummyOperator(task_id='wait2', trigger_rule='all_success')
+wait3 = DummyOperator(task_id='wait3', trigger_rule='all_success')
+wait4 = DummyOperator(task_id='wait4', trigger_rule='all_success')
 
 trigger_airbyte_sync >> wait1 >> [silver_Categories,silver_Customers,silver_EmployeesTerritories,silver_Employees,silver_Products] >> wait2 >> [silver_Region,silver_Shippers,silver_Territories,silver_Orders,silver_OrdersDetails] >> wait3 >> [gold_Customers,gold_Employees,gold_Orders,gold_Products,gold_Tempo] >> wait4 >> gold_Fato_Orders
 
