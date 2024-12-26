@@ -39,7 +39,7 @@
 
 1. Clone the repository:
     ```bash
-    [git clone https://github.com/rodrigofjorge77/DWSnowflake.git](https://github.com/rodrigofjorge77/DWBQ.git)
+    https://github.com/rodrigofjorge77/DWBQ.git
     ```
 
 2. Install Airbyte:  
