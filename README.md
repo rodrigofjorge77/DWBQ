@@ -1,4 +1,4 @@
-# DW Snowflake - Arquitetura Medalhão
+# DW Big Query - Arquitetura Medalhão
 
 ## Table of Contents
 - [Overview](#overview)
