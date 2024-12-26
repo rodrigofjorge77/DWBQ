@@ -4,13 +4,12 @@ from airflow.providers.airbyte.operators.airbyte import AirbyteTriggerSyncOperat
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from airflow.providers.airbyte.sensors.airbyte import AirbyteJobSensor
 from airflow.sensors.filesystem import FileSensor
+from airflow.operators.dummy_operator import DummyOperator
 import pendulum
 
-AIRBYTE_CONNECTION_ID = '9e9d48ff-ef0a-453a-9448-561216d67933'
-#RAW_PRODUCTS_FILE = '/tmp/airbyte_local/json_from_faker/_airbyte_raw_products.jsonl'
-#COPY_OF_RAW_PRODUCTS = '/tmp/airbyte_local/json_from_faker/moved_raw_products.jsonl'
+AIRBYTE_CONNECTION_ID = 'dce4e822-f44d-41b0-aa4c-dcbd587ba3db'
 
-with DAG(dag_id='airbyte_example_airflow_dag',
+with DAG(dag_id='DW_Big_Query_Airbyte_Orchestration',
         default_args={'owner': 'airflow'},
         schedule='@daily',
         start_date=pendulum.today('UTC').add(days=-1)
@@ -143,6 +142,9 @@ with DAG(dag_id='airbyte_example_airflow_dag',
             gcp_conn_id="google_cloud_default",  # Nome da conexão configurada no Airflow
         )
 
-trigger_airbyte_sync>>silver_Categories>>silver_Customers>>silver_EmployeesTerritories>>silver_Employees>>silver_Products>>silver_Region>>silver_Shippers>>silver_Territories>>silver_Orders>>silver_OrdersDetails
+wait1 = DummyOperator(task_id='wait1', trigger_rule='all_success')
+wait2 = DummyOperator(task_id='wait2', trigger_rule='all_success')
+
+trigger_airbyte_sync >> wait1 >> [silver_Categories,silver_Customers,silver_EmployeesTerritories,silver_Employees,silver_Products] >> wait2 >> [silver_Region,silver_Shippers,silver_Territories,silver_Orders,silver_OrdersDetails]
 
     
