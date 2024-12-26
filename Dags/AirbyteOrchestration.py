@@ -7,7 +7,7 @@ from airflow.sensors.filesystem import FileSensor
 from airflow.operators.dummy_operator import DummyOperator
 import pendulum
 
-AIRBYTE_CONNECTION_ID = 'dce4e822-f44d-41b0-aa4c-dcbd587ba3db'
+AIRBYTE_CONNECTION_ID = '4403bff2-913c-4387-8d0c-38e380add0f8'
 
 with DAG(dag_id='DW_Big_Query_Airbyte_Orchestration',
         default_args={'owner': 'airflow'},
