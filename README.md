@@ -18,7 +18,7 @@ Neste projeto:
 
 ## System Architecture
 
-![System Architecture](https://github.com/rodrigofjorge77/DWSnowflake/blob/main/Assets/arquitetura.png)
+![System Architecture](https://github.com/rodrigofjorge77/DWBQ/blob/main/assets/architecture.png)
 
 ## Data Source Model in Postgres
 
@@ -26,7 +26,7 @@ Neste projeto:
 
 ## Airflow Pipeline
 
-![System Architecture](https://github.com/rodrigofjorge77/DWSnowflake/blob/main/Assets/Airflow_Full-Load.png)
+![System Architecture](https://github.com/rodrigofjorge77/DWBQ/blob/main/assets/architecture.png)
 
 ## Star Schema Snowflake Model
 
