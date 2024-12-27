@@ -9,6 +9,7 @@
 
 ## Overview
 
+📊 Arquitetura do Projeto: O fluxo inicia com o Apache Airflow orquestrando o processo e acionando o Airbyte, responsável por extrair dados de diversas tabelas do Oracle e carregá-los na camada Bronze do Google BigQuery. Em seguida, o Airflow processa os dados nas camadas Silver e Gold, deixando-os disponíveis para análises em dashboards dinâmicos criados com o Google Looker.
 
 ## System Architecture
 
